@@ -6,7 +6,7 @@
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-server 'lin-res44.csc.ncsu.edu', user: 'expertiza', roles: %w{web app}, my_property: :my_value
+server 'lin-res44.csc.ncsu.edu', user: 'svaradhe', roles: %w{web app}, my_property: :my_value
 
 
 # role-based syntax
@@ -20,9 +20,9 @@ server 'lin-res44.csc.ncsu.edu', user: 'expertiza', roles: %w{web app}, my_prope
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
-role :app, %w{expertiza@lin-res44.csc.ncsu.edu}
-role :web, %w{expertiza@lin-res44.csc.ncsu.edu}
-role :db,  %w{expertiza@lin-res44.csc.ncsu.edu}
+role :app, %w{svaradhe@lin-res44.csc.ncsu.edu}
+role :web, %w{svaradhe@lin-res44.csc.ncsu.edu}
+role :db,  %w{svaradhe@lin-res44.csc.ncsu.edu}
 
 
 # Configuration
