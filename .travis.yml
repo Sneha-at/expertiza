@@ -35,6 +35,7 @@ before_install:
   - geckodriver --version
   - redis-server --version
   - redis-server &
+  - bundle update --conservative
 before_script:
   - mysql -u root < db/grant_expertiza.sql
   - cp config/database.yml.example config/database.yml
