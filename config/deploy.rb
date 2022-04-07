@@ -21,7 +21,7 @@ set :local_assets_dir, %w[public/assets public/att]
 set :locals_rails_env, 'staging'
 
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.10.1'
+lock '~> 3.16.0'
 
 set :application, 'expertiza'
 set :repo_url, 'https://github.com/Sneha-at/expertiza.git'
