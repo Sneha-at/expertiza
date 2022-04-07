@@ -19,6 +19,8 @@ server 'lin-res44.csc.ncsu.edu', user: 'svaradhe', roles: %w{web app}, my_proper
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
+
+# commenting for build trigger
 role :app, %w{svaradhe@lin-res44.csc.ncsu.edu}
 role :web, %w{svaradhe@lin-res44.csc.ncsu.edu}
 role :db,  %w{svaradhe@lin-res44.csc.ncsu.edu}
