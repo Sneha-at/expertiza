@@ -2,6 +2,7 @@
 require 'capistrano-db-tasks'
 
 set :default_stage, "staging"
+
 # if you haven't already specified
 set :rails_env, 'staging'
 
