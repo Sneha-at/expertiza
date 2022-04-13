@@ -40,11 +40,11 @@ role :db,  %w{svaradhe@lin-res44.csc.ncsu.edu}
 #
 # Global options
 # --------------
-#  set :ssh_options, {
-#    keys: %w(/home/rlisowski/.ssh/id_rsa),
-#    forward_agent: false,
-#    auth_methods: %w(password)
-#  }
+ set :ssh_options, {
+   keys: %w(/Users/adwaittathe/.ssh/id_rsa),
+   forward_agent: false,
+   auth_methods: %w(password)
+ }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
