@@ -3,6 +3,7 @@ env:
   - CC_TEST_REPORTER_ID=d20eadb9183f9f1866657be5b5e47b4a2398ff1ea0be29fbd50a26a43ea98b62
   - REPORT_REPO_NAME=Travis-ci-code-coverage-reports
   - secure: M8jWqnatLYTny6mqLHZ7YbxINqpyCG0VPSotOLVMAAGkAranqcaeFYkfPUf72X/iIRGRmYWf4OFmnuzeE48jEtkWlvadiqqicO3/98gYa+peTljThM7L/nTFyUwQsqwE0HEya6rS/YRyl96B6u24M5GMpJPx+zgw1gTUgFe5vgR9HHA3IXB8+xMyEIqsZc0c8TLmJ4T53XVjaGHJ2louG8Yl2dR9Q8EY/SU8H2lYNg1wWoLQ5+lriwSVZ3NKUJG6l6vF2oZb15eBat4Vg1eLXfQ8xdE+YmndpIov1l3/0GtRoJNhdOVnzboso5V+fXUUDzs9oYcV7SzONzBOke5cyRZvdRnGB45Ou2RF8B6ciiUU5lQ7vsVoZmoI5TucfTFvL9fJkuGalvBCYTYopUwIqA8LRYFT/H8/syUsV6mnJWKjJjT7W7dz0jNTo2oucO944JtCD6mD7VnwgjLOq5qSkU1QHTwRtHcofo6L87F6BUXiOv+/T1qpd0iazpHyp7RveCc/Pvc6ZHjDY0t6eGHrp2E0hTjVxxb5AymNd+zi4sictOL77bIrUIBwcEUV9UQ6UeyaQAwYtyM4DvGkhka+rrcu1dhIS+8FpEcTuixUAdF4t7/aoFQ+2UR2Dw8nK6O7FdP2b067IbMFByfbnm8Ccz/hsUxEMZv3l2NW9taEFVA=
+  - secure: UWfqlEZH3BkuyOdTGv4S2toWgWqKB0smbqxVd0E1RYguER2k6GPLqCmbmIKKMvcDanNyeFp2BZwVuDWCo5sIEClQvOfSPgak6ihYPZ0tWYsQTjdeSTUc99WZzeSCL6M7VqqoOyl9Yyge1NnpLtaMfT5Z8FBnpJRmRIjO6MHHxBn3LS2usuQG63goAqxeZhQjKQgPThg7tfFRMHrNioY2ubFh8ne4jNvv4qS0f5Zq0/JVpSbjtnPL/gOPBTt9816J8hbGpNZLiNtIe0LZRWPxzqKeqCiQbI/5QXeo2qDqh2WxT2DlBKeFcMDlawL+m9rrWIllX+v+SuyvYjY7XURwAsKykhnVsYFudsG8iD8laDnlGbZqBFCEWjJNOmO9UZcKCaQPw3lLFZhVtVzcZ/R1qN3bXWgIO/cb/Zgr5NmEZwsdpVfpLlQ4O8rJHEXhQxLRVz4ej5nGmpNWdYid3441xBCodSWs5d7LnLBIW9H48UcBe78tuplO7yfUpr3Ih68f2ad/lbH3quWpCAtPszEOSLZ1/ufqp5aPu192hOgbgN9kTuCjrA09NsLMz0FHfAQ5zY7Ea3xkiuHQAQWu2dXfgeqLWZbvs9Tk/oA+hKcqc8MNqVJBmipTcFSux7C8Gm3wFq4kUjrhQuZTP6BWuisqVYGIcBEKGu4OFGYJmclqASk=
   matrix:
   - TESTFOLDER=models
   - TESTFOLDER=controllers
@@ -43,7 +44,7 @@ before_script:
 - bundle install
 - bundle exec rails db:setup
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.7.0-linux-amd64
-  > ./cc-test-reporter
+- ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - "./cc-test-reporter before-build"
 - export DISPLAY=:99.0
@@ -54,7 +55,7 @@ script:
 - export DISPLAY=:99.0 && RUBYOPT=W0 bundle exec rspec spec/$TESTFOLDER 2> /dev/null
 -
 after_success:
-- openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa
+- openssl aes-256-cbc -k $DEPLOY_KEY -in deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa
 - bundle exec cap staging deploy
 services:
 - mysql

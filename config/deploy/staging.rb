@@ -45,7 +45,7 @@ role :db,  %w{svaradhe@lin-res44.csc.ncsu.edu}
 #    forward_agent: false,
 #    auth_methods: %w(password)
 #  }
-set :ssh_options, keys: ["config/deploy_id_rsa"] if File.exist?("config/deploy_id_rsa")
+set :ssh_options, keys: ["config/deploy_id_rsa"]
 
 #
 # The server-based syntax can be used to override options:
