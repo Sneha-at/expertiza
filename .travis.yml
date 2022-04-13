@@ -43,8 +43,7 @@ before_script:
 - export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
 - bundle install
 - bundle exec rails db:setup
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.7.0-linux-amd64
-- ./cc-test-reporter
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.7.0-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - "./cc-test-reporter before-build"
 - export DISPLAY=:99.0
