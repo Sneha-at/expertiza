@@ -70,7 +70,7 @@ script:
   # - git push origin master
 
   # Sum coverage parts into coverage/codeclimate.json and upload coverage/codeclimate.json
-  - if [ "$TESTFOLDER" == "models" ] && [ "$TRAVIS_TEST_RESULT" == 0 ]; then $HOME/build/expertiza/expertiza/cc-test-reporter sum-coverage $HOME/$REPORT_REPO_NAME/$TRAVIS_PULL_REQUEST/codeclimate.*.json && $HOME/build/expertiza/expertiza/cc-test-reporter upload-coverage; fi
+  # - if [ "$TESTFOLDER" == "models" ] && [ "$TRAVIS_TEST_RESULT" == 0 ]; then $HOME/build/expertiza/expertiza/cc-test-reporter sum-coverage $HOME/$REPORT_REPO_NAME/$TRAVIS_PULL_REQUEST/codeclimate.*.json && $HOME/build/expertiza/expertiza/cc-test-reporter upload-coverage; fi
 after_success:
   - "openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa" 
   - bundle exec cap staging deploy
