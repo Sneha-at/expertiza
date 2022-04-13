@@ -52,7 +52,7 @@ before_script:
   - sleep 3 # give xvfb some time to start
 script:
   - "export DISPLAY=:99.0 && RUBYOPT=W0 bundle exec rspec spec/$TESTFOLDER 2> /dev/null"
-after_script:
+# after_script:
   - 
   # - ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$TESTFOLDER.json"
   # https://docs.travis-ci.com/user/environment-variables#convenience-variables
@@ -68,7 +68,7 @@ after_script:
   # - git add --all
   # - git commit -m "Add code climate coverage report"
   # - git push origin master
-  #Dummy commit
+
   # Sum coverage parts into coverage/codeclimate.json and upload coverage/codeclimate.json
   - if [ "$TESTFOLDER" == "models" ] && [ "$TRAVIS_TEST_RESULT" == 0 ]; then $HOME/build/expertiza/expertiza/cc-test-reporter sum-coverage $HOME/$REPORT_REPO_NAME/$TRAVIS_PULL_REQUEST/codeclimate.*.json && $HOME/build/expertiza/expertiza/cc-test-reporter upload-coverage; fi
 after_success:
