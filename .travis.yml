@@ -1,91 +1,69 @@
 env:
   global:
-    - CC_TEST_REPORTER_ID=d20eadb9183f9f1866657be5b5e47b4a2398ff1ea0be29fbd50a26a43ea98b62
-    - REPORT_REPO_NAME=Travis-ci-code-coverage-reports
-    - secure: fpBhnY1Y4U0qx/BOFyO8OaS5gBPlF9Y8mFONF7WkphqbEJytlfIunbLFpQ1CX/9rDo1+96g0TDJUMx3bs4AnsgGEt16oSLOiRhKfyMcdsVRJry8a0PZMtYaEpBReyPv0Va0V7VTy1hFzLKTkmxKoIoYgNY0msocRypl/K6CF7l8=
+  - CC_TEST_REPORTER_ID=d20eadb9183f9f1866657be5b5e47b4a2398ff1ea0be29fbd50a26a43ea98b62
+  - REPORT_REPO_NAME=Travis-ci-code-coverage-reports
+  - secure: M8jWqnatLYTny6mqLHZ7YbxINqpyCG0VPSotOLVMAAGkAranqcaeFYkfPUf72X/iIRGRmYWf4OFmnuzeE48jEtkWlvadiqqicO3/98gYa+peTljThM7L/nTFyUwQsqwE0HEya6rS/YRyl96B6u24M5GMpJPx+zgw1gTUgFe5vgR9HHA3IXB8+xMyEIqsZc0c8TLmJ4T53XVjaGHJ2louG8Yl2dR9Q8EY/SU8H2lYNg1wWoLQ5+lriwSVZ3NKUJG6l6vF2oZb15eBat4Vg1eLXfQ8xdE+YmndpIov1l3/0GtRoJNhdOVnzboso5V+fXUUDzs9oYcV7SzONzBOke5cyRZvdRnGB45Ou2RF8B6ciiUU5lQ7vsVoZmoI5TucfTFvL9fJkuGalvBCYTYopUwIqA8LRYFT/H8/syUsV6mnJWKjJjT7W7dz0jNTo2oucO944JtCD6mD7VnwgjLOq5qSkU1QHTwRtHcofo6L87F6BUXiOv+/T1qpd0iazpHyp7RveCc/Pvc6ZHjDY0t6eGHrp2E0hTjVxxb5AymNd+zi4sictOL77bIrUIBwcEUV9UQ6UeyaQAwYtyM4DvGkhka+rrcu1dhIS+8FpEcTuixUAdF4t7/aoFQ+2UR2Dw8nK6O7FdP2b067IbMFByfbnm8Ccz/hsUxEMZv3l2NW9taEFVA=
   matrix:
-    - TESTFOLDER=models
-    - TESTFOLDER=controllers
-    - TESTFOLDER=helpers
-    - TESTFOLDER=lib
+  - TESTFOLDER=models
+  - TESTFOLDER=controllers
+  - TESTFOLDER=helpers
+  - TESTFOLDER=lib
 language: ruby
 dist: trusty
 cache:
   bundler: true
   directories:
-    - vendor/assets/components
+  - vendor/assets/components
 rvm:
-  - 2.3.1
+- 2.3.1
 branches:
   only:
-    - master
-    - beta
-    - v1_auto_deployment
+  - master
+  - beta
+  - v1_auto_deployment
 before_install:
-  - uname -a
-  - lsb_release -a
-  - rvm list
-  - unset RAILS_ENV
-  - rvm rubygems current
-  - npm install -g bower
-  - bower install
-  - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
-  - tar -xf geckodriver-v0.23.0-linux64.tar.gz
-  - sudo mv geckodriver /usr/local/bin/geckodriver
-  - geckodriver --version
-  - redis-server --version
-  - redis-server &
+- uname -a
+- lsb_release -a
+- rvm list
+- unset RAILS_ENV
+- rvm rubygems current
+- npm install -g bower
+- bower install
+- wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+- tar -xf geckodriver-v0.23.0-linux64.tar.gz
+- sudo mv geckodriver /usr/local/bin/geckodriver
+- geckodriver --version
+- redis-server --version
+- redis-server &
 before_script:
-  - mysql -u root < db/grant_expertiza.sql
-  - cp config/database.yml.example config/database.yml
-  - cp config/secrets.yml.example config/secrets.yml
-  - export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
-  - bundle install
-  - bundle exec rails db:setup
-  # Test coverage offered by Code Climate
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.7.0-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-  # Using xvfb to Run Tests That Require a GUI (https://docs.travis-ci.com/user/gui-and-headless-browsers/)
-  - "export DISPLAY=:99.0" # Display number for xvfb (for headless browser testing)
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16"
-  - sleep 3 # give xvfb some time to start
+- mysql -u root < db/grant_expertiza.sql
+- cp config/database.yml.example config/database.yml
+- cp config/secrets.yml.example config/secrets.yml
+- export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
+- bundle install
+- bundle exec rails db:setup
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.7.0-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
+- export DISPLAY=:99.0
+- "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile
+  --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16"
+- sleep 3
 script:
-  - "export DISPLAY=:99.0 && RUBYOPT=W0 bundle exec rspec spec/$TESTFOLDER 2> /dev/null"
-# after_script:
-  - 
-  # - ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$TESTFOLDER.json"
-  # https://docs.travis-ci.com/user/environment-variables#convenience-variables
-  # - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then export TRAVIS_PULL_REQUEST=master; fi
-  # - ls -lah coverage/
-  # - cd $HOME
-  # - git config --global user.email "zhu6@ncsu.edu"
-  # - git config --global user.name "Winbobob"
-  # - git clone --quiet https://$TOKEN@github.com/expertiza/$REPORT_REPO_NAME.git
-  # - cd $REPORT_REPO_NAME
-  # - if [ ! -d "./$TRAVIS_PULL_REQUEST" ]; then mkdir $TRAVIS_PULL_REQUEST; fi
-  # - cp -Rf $HOME/build/expertiza/expertiza/coverage/codeclimate.$TESTFOLDER.json $HOME/$REPORT_REPO_NAME/$TRAVIS_PULL_REQUEST/codeclimate.$TESTFOLDER.json
-  # - git add --all
-  # - git commit -m "Add code climate coverage report"
-  # - git push origin master
-
-  # Sum coverage parts into coverage/codeclimate.json and upload coverage/codeclimate.json
-  # - if [ "$TESTFOLDER" == "models" ] && [ "$TRAVIS_TEST_RESULT" == 0 ]; then $HOME/build/expertiza/expertiza/cc-test-reporter sum-coverage $HOME/$REPORT_REPO_NAME/$TRAVIS_PULL_REQUEST/codeclimate.*.json && $HOME/build/expertiza/expertiza/cc-test-reporter upload-coverage; fi
+- export DISPLAY=:99.0 && RUBYOPT=W0 bundle exec rspec spec/$TESTFOLDER 2> /dev/null
+-
 after_success:
-  - "openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa" 
-  - bundle exec cap staging deploy
+- openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa
+- bundle exec cap staging deploy
 services:
-  - mysql
+- mysql
 addons:
   firefox: latest
 notifications:
   email:
-    # recipients:
-    #   - expertiza-support@lists.ncsu.edu
-    #   - jwbumga2@ncsu.edu
     on_success: change
     on_failure: always
-  # slack: expertiza-support:DS8GtpbAybxHVwwYNRvvbb39
   webhooks:
     urls:
-      - https://expertiza-travisci.herokuapp.com/?insertMode=update
+    - https://expertiza-travisci.herokuapp.com/?insertMode=update
