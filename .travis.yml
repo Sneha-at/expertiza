@@ -3,9 +3,9 @@ env:
     - CC_TEST_REPORTER_ID=d20eadb9183f9f1866657be5b5e47b4a2398ff1ea0be29fbd50a26a43ea98b62
     - REPORT_REPO_NAME=Travis-ci-code-coverage-reports
   matrix:
-    - TESTFOLDER=models
-    - TESTFOLDER=controllers
-    - TESTFOLDER=helpers
+    # - TESTFOLDER=models
+    # - TESTFOLDER=controllers
+    # - TESTFOLDER=helpers
     - TESTFOLDER=lib
 language: ruby
 dist: trusty
