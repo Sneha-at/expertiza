@@ -8,6 +8,7 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 # server 'lin-res44.csc.ncsu.edu', user: 'svaradhe', roles: %w{web app db}, my_property: :my_value
 server '152.7.99.48', user: 'svaradhe', roles: %w{web app db}, my_property: :my_value
+# Dummy trigger
 
 # role-based syntax
 # ==================
