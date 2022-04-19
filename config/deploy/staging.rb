@@ -7,7 +7,7 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 # server 'lin-res44.csc.ncsu.edu', user: 'svaradhe', roles: %w{web app db}, my_property: :my_value
-server '152.7.99.48', user: 'svaradhe', roles: %w{web app db}, my_property: :my_value
+server '152.7.99.151', user: 'svaradhe', roles: %w{web app db}, my_property: :my_value
 # Dummy trigger
 
 # role-based syntax
@@ -22,9 +22,9 @@ server '152.7.99.48', user: 'svaradhe', roles: %w{web app db}, my_property: :my_
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-# role :app, %w{svaradhe@lin-res44.csc.ncsu.edu}
-# role :web, %w{svaradhe@lin-res44.csc.ncsu.edu}
-# role :db,  %w{svaradhe@lin-res44.csc.ncsu.edu}
+role :app, %w{svaradhe@152.7.99.48}
+role :web, %w{svaradhe@152.7.99.48}
+role :db,  %w{svaradhe@152.7.99.48}
 
 # Configuration
 # =============
