@@ -22,9 +22,9 @@ server '152.7.99.151', user: 'svaradhe', roles: %w{web app db}, my_property: :my
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-role :app, %w{svaradhe@152.7.99.48}
-role :web, %w{svaradhe@152.7.99.48}
-role :db,  %w{svaradhe@152.7.99.48}
+role :app, %w{svaradhe@152.7.99.151}
+role :web, %w{svaradhe@152.7.99.151}
+role :db,  %w{svaradhe@152.7.99.151}
 
 # Configuration
 # =============
