@@ -61,3 +61,5 @@ set :ssh_options, keys: ["config/deploy_id_rsa"]
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+# Dummy trigger

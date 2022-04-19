@@ -52,7 +52,6 @@ rm -rf database.yml-dummy
 
 cd $DIR
 
-# Dummy comment
 # Close any docker containers if any
 docker-compose down
 

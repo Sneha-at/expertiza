@@ -3,6 +3,7 @@ env:
   - CC_TEST_REPORTER_ID=d20eadb9183f9f1866657be5b5e47b4a2398ff1ea0be29fbd50a26a43ea98b62
   - REPORT_REPO_NAME=Travis-ci-code-coverage-reports
   - secure: RbjYAC5py8HG4BxZ2wbyHFzFOJjFerS5QqARFXynTCC+qks8YamJEuHoA7hK9LgiODEuIpWHZwzfTvDcyr4Y/TVQTDzs98/8AgfVZkcJnwUd5cOHtyKSWXBL449chsJ9rNZbLCiOCBFavCmcc52oS1dBkQO76WrYRhyXcBcyBG2w+Sjnxvz84/Qc8ixQEswRwk6NVM5mBxb0BiXzdTKD3MTseutLMaMew+HU17qQu59H0KMGCHW/sFzTlCy+VHx+TOnBfkfrw7ZM73FLtnCzeJo3X25pbPgfkpHtza9+6a3W+SEsdx4zhT6NXY6qGYRmPHL6h+wnfih5p44YSVSjD4qURsHtd3udI1hiXgyM5W+s/fZnyhY5wuLbw3KpNbwqCYVMEFpCmBF8CmCvHhjC1fEb3hfCq3jlP5pRBjxLVY5QeD0AAGaJ76SrOsa9mhPJdyxA5GAxnfwKyI1S7sSMiJr9wloHiKHz6QS+QQiC/9t1g4y1qm67UBbcIBHOOuqu03CRAuq9b6HKNzHaCL/qnHOiMqmdT3ul3oc6HEEWTBWnFAAlHt9prcnHB64AgE7kTLqndJhocqFFK/Hz8y+b93z4LmMy/Qk4elMeabsv23yIWzKK0o8VdLzOQX/EPzVsYpQww0Nm2BsDEz3krqD55irv4V55H1Dl7F65qmwXvM0=
+  - secure: ShqZea3fpK0OTYrt0obiy6dcHItu5AZpIKkrGZwR38eKptrgacBRzUTpiaFMzq+xMTXgVb810PNuf+ouQiqoxLBBC8qYUx7tyezNm8k1+yU0utCabVcUOcl1j/A6SGo0kaej5RmQQoEvBwKmCImKST99Hw6bZ4DiipPZl+fHgHqVqboxZdIvMZ4qvT15Hmmk08TjJvV6slYouDwGpfwIuBSdUEu9XKYJd7EWLgHUrnRH2M8lurrD3ptMGK27cuPGY5KLjSNgAXURTAYlYKKU7W7DVVdQofRr6iLTkbKM6KGZdAwa1GrYcCFZ3p9NskNJ7Hf+tZfsDuj5O3xu+qLhtKXxgnrTVBGi/hcBlFDDuz28GzHRHBeFS03NPjTT4naG79ctdKYzE28RuGkAp50YIuSPt10Qhg45NDUn0wW6nPOl0H7rsIf5k+4fwYlX208B8QBdY/kMEA22QEKZOdCVqph1azpnp/zAyf3Mc/7tcu8F+Q7gJuXL1nXRtmPHyHjH+wDypg6QGgERjZ+yqOqANMYskSNoq/SfsRzQON4K3AU7VEVMbpmfBm9a9rv30uT1+HlegBO/cOMjaR3JjOYLNvHjidcSyJYU+IxvNJQ4oHjiams8jEuFPGz1MmLnyp/5+n7Np53rbrr7O9JmxLN7IWKgMVE2Rztgtzo4hutFZeM=
   matrix:
   - TESTFOLDER=lib
 language: ruby
@@ -39,7 +40,8 @@ before_script:
 - export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
 - bundle install
 - bundle exec rails db:setup
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.7.0-linux-amd64 > ./cc-test-reporter
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.7.0-linux-amd64
+  > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - "./cc-test-reporter before-build"
 - export DISPLAY=:99.0
@@ -49,7 +51,8 @@ before_script:
 script:
 - export DISPLAY=:99.0 && RUBYOPT=W0 bundle exec rspec spec/$TESTFOLDER 2> /dev/null
 after_success:
-- openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa
+- openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out
+  config/deploy_id_rsa
 - bundle exec cap staging deploy --trace
 services:
 - mysql
